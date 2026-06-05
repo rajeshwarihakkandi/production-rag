@@ -1,0 +1,42 @@
+[
+    {
+        "question": "What is retrieval augmented generation?",
+        "ground_truth": "Retrieval-Augmented Generation (RAG) is a technique that enhances LLM outputs by retrieving relevant documents from external databases and using them as context for generation, improving accuracy and reducing hallucination."
+    },
+    {
+        "question": "How does multi-head attention work in transformers?",
+        "ground_truth": "Multi-head attention splits the input into multiple parallel attention heads, each computing attention over different representation subspaces. The outputs are concatenated and projected to produce the final result."
+    },
+    {
+        "question": "What problem does BERT solve with bidirectional training?",
+        "ground_truth": "BERT uses bidirectional training through a masked language model objective, allowing it to condition on both left and right context simultaneously, unlike traditional left-to-right language models."
+    },
+    {
+        "question": "What is chain of thought prompting?",
+        "ground_truth": "Chain of thought prompting encourages language models to produce intermediate reasoning steps before giving a final answer, improving performance on complex reasoning tasks."
+    },
+    {
+        "question": "What is self-consistency in language model reasoning?",
+        "ground_truth": "Self-consistency samples multiple reasoning paths from a language model and selects the most consistent final answer across those paths, improving accuracy over greedy decoding."
+    },
+    {
+        "question": "What are the main components of the transformer architecture?",
+        "ground_truth": "The transformer architecture consists of an encoder and decoder, each made of stacked layers containing multi-head self-attention mechanisms and position-wise feed-forward networks, with residual connections and layer normalization."
+    },
+    {
+        "question": "How does LoftQ improve quantized model performance?",
+        "ground_truth": "LoftQ applies quantization and low-rank approximation simultaneously to initialize LoRA adapters, reducing the gap between the quantized and original model weights and improving fine-tuning performance."
+    },
+    {
+        "question": "What is the purpose of positional encoding in transformers?",
+        "ground_truth": "Positional encoding injects information about the position of tokens in a sequence since the transformer has no recurrence or convolution, allowing the model to use the order of the sequence."
+    },
+    {
+        "question": "How does RAG handle knowledge that is not in the training data?",
+        "ground_truth": "RAG retrieves relevant documents from external databases at inference time, allowing it to access and use knowledge that was not part of the model's training data without requiring retraining."
+    },
+    {
+        "question": "What is the masked language model objective in BERT?",
+        "ground_truth": "BERT's masked language model objective randomly masks tokens in the input and trains the model to predict the original tokens, enabling bidirectional context learning across the entire sequence."
+    }
+]

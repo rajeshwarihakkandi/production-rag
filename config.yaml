@@ -1,0 +1,21 @@
+retrieval:
+  chunk_size: 700
+  chunk_overlap: 100
+  k: 10
+  top_k_reranked: 5
+  rrf_k: 60
+
+models:
+  embedding: "all-MiniLM-L6-v2"
+  reranker: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+  llm: "llama-3.1-8b-instant"
+  llm_provider: "groq"
+
+evaluation:
+  faithfulness_threshold: 0.80
+  golden_dataset_path: "eval/golden_dataset.json"
+  ragas_report_path: "eval/ragas_report.json"
+
+prompts:
+  system: "You are a research assistant. Answer the question using ONLY the context chunks provided below. For every claim you make, cite the chunk number like this: [Chunk 1], [Chunk 3]. If the chunks do not contain enough information to answer, respond with: I cannot find sufficient information in the provided documents to answer this question. Do not guess. Do not use outside knowledge."
+  citation_check: "You are a grounding checker for a RAG system. You will be given an answer and the source chunks it was generated from. Your job is to check if the answer is broadly supported by the chunks. Academic paraphrasing and summarizing counts as supported. Only mark as ungrounded if the answer contains specific facts, numbers, or claims that directly contradict or are completely absent from the chunks. Return ONLY a JSON object with two fields: grounded (true or false) and unsupported_claims (list of specific unsupported claims, or empty list). No markdown, no explanation."
