@@ -1,4 +1,3 @@
-cat > .github\workflows\eval.yml << 'EOF'
 name: RAG Evaluation CI
 
 on:
@@ -15,22 +14,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.12"
-
-      - name: Install dependencies
-        run: |
-          pip install langchain langchain-chroma langchain-huggingface langchain-groq
-          pip install chromadb sentence-transformers rank-bm25 pypdf
-          pip install python-dotenv groq pyyaml datasets
-
-      - name: Run evaluation
-        env:
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        run: python eval/evaluate.py
-
       - name: Check quality gate
         run: |
           python -c "
@@ -41,19 +24,12 @@ jobs:
           failed = []
           for metric in ['faithfulness', 'context_recall']:
               score = report.get(metric, 0)
-              print(f'{metric}: {score}')
+              print(metric + ': ' + str(score))
               if score < threshold:
                   failed.append(metric)
           if failed:
-              print(f'FAILED metrics: {failed}')
+              print('FAILED metrics: ' + str(failed))
               sys.exit(1)
           else:
               print('All critical metrics passed.')
           "
-
-      - name: Upload evaluation report
-        uses: actions/upload-artifact@v3
-        with:
-          name: ragas-report
-          path: eval/ragas_report.json
-EOF
